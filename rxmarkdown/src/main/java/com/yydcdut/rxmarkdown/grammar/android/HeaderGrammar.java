@@ -45,26 +45,32 @@ class HeaderGrammar extends AbsAndroidGrammar {
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_0_HEADER}
      */
     protected static final String KEY_0_HEADER = "# ";
+    protected static final String KEY_0_HEADER_NS = "#";
     /**
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_1_HEADER}
      */
     protected static final String KEY_1_HEADER = "## ";
+    protected static final String KEY_1_HEADER_NS = "##";
     /**
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_2_HEADER}
      */
     protected static final String KEY_2_HEADER = "### ";
+    protected static final String KEY_2_HEADER_NS = "###";
     /**
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_3_HEADER}
      */
     protected static final String KEY_3_HEADER = "#### ";
+    protected static final String KEY_3_HEADER_NS = "####";
     /**
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_4_HEADER}
      */
     protected static final String KEY_4_HEADER = "##### ";
+    protected static final String KEY_4_HEADER_NS = "#####";
     /**
      * {@link com.yydcdut.rxmarkdown.grammar.edit.HeaderGrammar#KEY_5_HEADER}
      */
     protected static final String KEY_5_HEADER = "###### ";
+    protected static final String KEY_5_HEADER_NS = "######";
 
     private float mHeader1RelativeSize;
     private float mHeader2RelativeSize;
@@ -85,12 +91,12 @@ class HeaderGrammar extends AbsAndroidGrammar {
 
     @Override
     boolean isMatch(@NonNull String text) {
-        return text.startsWith(KEY_0_HEADER) ||
-                text.startsWith(KEY_1_HEADER) ||
-                text.startsWith(KEY_2_HEADER) ||
-                text.startsWith(KEY_3_HEADER) ||
-                text.startsWith(KEY_4_HEADER) ||
-                text.startsWith(KEY_5_HEADER);
+        return text.startsWith(KEY_0_HEADER) || text.startsWith(KEY_0_HEADER_NS) ||
+                text.startsWith(KEY_1_HEADER) || text.startsWith(KEY_1_HEADER_NS) ||
+                text.startsWith(KEY_2_HEADER) || text.startsWith(KEY_2_HEADER_NS) ||
+                text.startsWith(KEY_3_HEADER) || text.startsWith(KEY_3_HEADER_NS) ||
+                text.startsWith(KEY_4_HEADER) || text.startsWith(KEY_4_HEADER_NS) ||
+                text.startsWith(KEY_5_HEADER) || text.startsWith(KEY_5_HEADER_NS);
     }
 
     @NonNull
@@ -122,6 +128,26 @@ class HeaderGrammar extends AbsAndroidGrammar {
             ssb.delete(0, KEY_0_HEADER.length());
             ssb.setSpan(new RelativeSizeSpan(mHeader1RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
+        else if (text.startsWith(KEY_5_HEADER_NS)) {
+            ssb.delete(0, KEY_5_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader6RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (text.startsWith(KEY_4_HEADER_NS)) {
+            ssb.delete(0, KEY_4_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader5RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (text.startsWith(KEY_3_HEADER_NS)) {
+            ssb.delete(0, KEY_3_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader4RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (text.startsWith(KEY_2_HEADER_NS)) {
+            ssb.delete(0, KEY_2_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader3RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (text.startsWith(KEY_1_HEADER_NS)) {
+            ssb.delete(0, KEY_1_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader2RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (text.startsWith(KEY_0_HEADER_NS)) {
+            ssb.delete(0, KEY_0_HEADER_NS.length());
+            ssb.setSpan(new RelativeSizeSpan(mHeader1RelativeSize), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+
         return ssb;
     }
 
